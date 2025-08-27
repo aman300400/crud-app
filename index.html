@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Company CRUD App</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <aside class="sidebar">
+    <h2>Menu</h2>
+    <nav>
+      <a href="#/list" id="link-list">Company List</a>
+      <a href="#/new" id="link-new">New Company</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <header class="topbar">
+      <h1 id="page-title">Company List</h1>
+      <div class="search-wrap" id="search-wrap" hidden>
+        <input type="search" id="search" placeholder="Search companies by name/email/phone"/>
+      </div>
+    </header>
+
+    <section id="view-list" class="view">
+      <table id="company-table">
+        <thead>
+          <tr>
+            <th>Company Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Created At</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="company-tbody">
+          <tr><td colspan="5" class="muted">No companies added yet.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="view-form" class="view" hidden>
+      <form id="company-form" novalidate>
+        <input type="hidden" name="id" id="company-id"/>
+
+        <h2>Company Basic Info</h2>
+        <div class="grid">
+          <label>Company Name*<input type="text" id="companyName" name="companyName" maxlength="50" required/></label>
+          <label>Company Address<textarea id="companyAddress" name="companyAddress" rows="2"></textarea></label>
+          <label>Email*<input type="email" id="companyEmail" name="companyEmail" maxlength="100" required/></label>
+          <label>Phone Number*<input type="tel" id="companyPhone" name="companyPhone" maxlength="15" required/></label>
+        </div>
+
+        <h2>Employee Info</h2>
+        <div class="grid">
+          <label>Employee Name*<input type="text" id="employeeName" name="employeeName" maxlength="25" required/></label>
+          <label>Designation
+            <select id="designation" name="designation">
+              <option value="">Select</option>
+              <option>Developer</option>
+              <option>Manager</option>
+              <option>System Admin</option>
+              <option>Team Lead</option>
+              <option>PM</option>
+            </select>
+          </label>
+          <label>Join Date*<input type="date" id="joinDate" name="joinDate" required/></label>
+          <label>Email*<input type="email" id="empEmail" name="empEmail" maxlength="100" required/></label>
+          <label>Phone Number*<input type="tel" id="empPhone" name="empPhone" maxlength="15" required/></label>
+        </div>
+
+        <h2>Skills Info</h2>
+        <div id="skills-list"></div>
+        <div class="skills-controls">
+          <input type="text" id="skill-search" placeholder="Search skills"/>
+          <select id="skill-name" size="6">
+            <option>Java</option><option>Angular</option><option>CSS</option><option>HTML</option>
+            <option>JavaScript</option><option>UI</option><option>SQL</option><option>React</option>
+            <option>PHP</option><option>GIT</option><option>AWS</option><option>Python</option>
+            <option>Django</option><option>C</option><option>C++</option><option>C#</option>
+            <option>Unity</option><option>R</option><option>AI</option><option>NLP</option>
+            <option>Photoshop</option><option>Node.js</option>
+          </select>
+          <input type="number" id="skill-rating" min="1" max="5" placeholder="Rating 1-5"/>
+          <button type="button" id="add-skill">Add Skill</button>
+        </div>
+
+        <h2>Education Info</h2>
+        <div id="edu-list"></div>
+        <div class="grid edu-controls">
+          <label>School/College*<input type="text" id="edu-school" maxlength="50"/></label>
+          <label>Course*<input type="text" id="edu-course" maxlength="25"/></label>
+          <label>Completed Year*<input type="month" id="edu-year"/></label>
+          <button class="inline" type="button" id="add-edu">Add Education</button>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="primary">Save</button>
+          <button type="button" id="cancel">Cancel</button>
+        </div>
+        <p id="form-message" class="success" hidden>Company details saved successfully.</p>
+        <div id="errors" class="errors" role="alert" hidden></div>
+      </form>
+    </section>
+  </main>
+
+  <template id="skill-chip-tpl">
+    <span class="chip"></span>
+  </template>
+
+  <template id="edu-row-tpl">
+    <div class="edu-row">
+      <span class="edu-text"></span>
+      <button type="button" class="icon-btn remove-edu" title="Remove">🗑️</button>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
