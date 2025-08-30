@@ -14,7 +14,7 @@ const searchInput = el("search");
 const STORAGE_KEY = "companies";
 
 function saveAll(companies) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(companies));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(companies));// FUNCTION SAVE ALLL
 }
 function loadAll() {
   try {
